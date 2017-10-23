@@ -12,7 +12,6 @@ $login->loginAction($url,$salt);
 class Login {
     public function loginAction($url,$salt){
         $data=$this->getUserData();
-
         if(!$data || empty($data)){
             header("Location: $url");
         }
