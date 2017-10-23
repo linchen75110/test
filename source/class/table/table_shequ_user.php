@@ -1,0 +1,40 @@
+<?php
+if(!defined('IN_DISCUZ')) {
+    exit('Access Denied');
+}
+
+class table_shequ_user extends discuz_table
+{
+    public function __construct() {
+
+        $this->_table = 'shequ_user';
+        $this->_pk    = 'id';
+        parent::__construct();
+    }
+    public function insert($uid, $username,$ava){
+        $arr = array(
+                                'uid' => $uid,
+                                'username' => $username,
+                                'ava' => $ava,
+                );
+                $id = DB::insert('shequ_user', $arr);
+    }
+    public function fetch_all_friends_ids($usernames) {
+        $users = array();
+        if(!empty($usernames)) {
+            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE username IN (%n)', array($this->_table, (array)$usernames), 'username');
+
+        }
+        return $users;
+    }
+
+    public function fetch_friends_ids($usernames) {
+        $uids_all = array();
+        if($usernames) {
+            foreach($this->fetch_all_friends_ids($usernames) as $k =>$v) {
+                $uids_all[] = $v['uid'];
+            }
+        }
+        return $uids_all;
+    }
+}

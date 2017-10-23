@@ -1,0 +1,42 @@
+<!--{template common/header}-->
+<!--{if $_G['uid']}-->
+<style id="diy_style" type="text/css">#portal_block_9 {  background-color:#fffbd7 !important;background-image:none !important;}#portal_block_10 {  background-color:#fffbd7 !important;background-image:none !important;}#portal_block_11 {  background-color:#fffbd7 !important;background-image:none !important;}#portal_block_12 {  background-color:#fffbd7 !important;background-image:none !important;}</style>
+<div class="wp">
+    <!--[diy=diy1]--><div id="diy1" class="area"><div id="framen6R6fv" class="cl_frame_bm frame move-span cl frame-2-1"><div id="framen6R6fv_left" class="column frame-2-1-l"><div id="framen6R6fv_left_temp" class="move-span temp"></div><div id="framemYX5PO" class="cl_frame_bm frame move-span cl frame-2-1"><div id="framemYX5PO_left" class="column frame-2-1-l"><div id="framemYX5PO_left_temp" class="move-span temp"></div></div><div id="framemYX5PO_center" class="column frame-2-1-r"><div id="framemYX5PO_center_temp" class="move-span temp"></div></div></div><!--{block/9}--></div><div id="framen6R6fv_center" class="column frame-2-1-r"><div id="framen6R6fv_center_temp" class="move-span temp"></div><div id="frame2M2BQg" class="cl_frame_bm frame move-span cl frame-2-1"><div id="frame2M2BQg_left" class="column frame-2-1-l"><div id="frame2M2BQg_left_temp" class="move-span temp"></div></div><div id="frame2M2BQg_center" class="column frame-2-1-r"><div id="frame2M2BQg_center_temp" class="move-span temp"></div></div></div><!--{block/10}--></div></div></div><!--[/diy]-->
+    <div style='font-size: 20px;color:red;margin-top:25px;'>精彩推荐
+        <div style='font-size: 20px;color:red;float: right;'>
+            <a href="video.php?mod=list" >更多</a>
+        </div>
+    </div>
+    <!--[diy=diy2]--><div id="diy2" class="area"><div id="frameWSTdg7" class="cl_frame_bm frame move-span cl frame-1"><div id="frameWSTdg7_left" class="column frame-1-c"><div id="frameWSTdg7_left_temp" class="move-span temp"></div><!--{block/11}--></div></div></div><!--[/diy]-->
+    <div style='font-size: 20px;color:red;margin-top:25px;'>热门讨论
+        <div style='font-size: 20px;color:red;float: right;'>
+            <a href="forum.php?mod=forumdisplay&fid=2" >更多</a>
+        </div>
+    </div>
+    <!--[diy=diy3]--><div id="diy3" class="area"><div id="frame32FDw3" class="cl_frame_bm frame move-span cl frame-1"><div id="frame32FDw3_left" class="column frame-1-c"><div id="frame32FDw3_left_temp" class="move-span temp"></div><!--{block/12}--></div></div></div><!--[/diy]-->
+    <div style='font-size: 20px;color:red;margin-top:25px;'>实况直播
+        <div style='font-size: 20px;color:red;float: right;'>
+            <a href="video.php?mod=zhibo" >更多</a>
+        </div>
+    </div>
+
+<div class="module cl ml">
+<ul>
+<!--{loop $tuijian $v}-->
+<li style="width: 220px;">
+    <a href="video.php?mod=target&url={$v['url']}"><img src="{$v['image']}" width="220" height="200" alt="{$v['title']}" /></a>
+    <p><a href="video.php?mod=target&url={$v['url']}" title="{$v['title']}"{target}>{$v['title']}</a></p>
+    <p>{$v['pingtai']}---主播：{$v['name']}</p>
+</li>
+<!--{/loop}-->
+</ul>
+</div>
+
+
+</div>
+
+<!--{elseif !$_G['uid']}-->
+<h1>请登录后查看！</h1>
+<!--{/if}-->
+<!--{template common/footer}-->

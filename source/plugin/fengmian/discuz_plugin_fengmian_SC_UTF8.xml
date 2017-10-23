@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3.2]]></item>
+	<item id="Time"><![CDATA[2017-09-29 19:20]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://www.lin.com/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[0]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[封面]]></item>
+			<item id="identifier"><![CDATA[fengmian]]></item>
+			<item id="description"><![CDATA[帖子封面自定义]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[fengmian/]]></item>
+			<item id="copyright"><![CDATA[迷你]]></item>
+			<item id="version"><![CDATA[v1.1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[hook]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3.2]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[开启前台设置封面]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[open_upload]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[允许设置封面的用户组]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[groups]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[1]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="appname"><![CDATA[帖子封面]]></item>
+				<item id="button"><![CDATA[设置封面]]></item>
+				<item id="noright"><![CDATA[对不起，本功能未开启或您无权限使用本功能，详情请联系网站管理员！]]></item>
+				<item id="errortype"><![CDATA[上传失败，请检查您上传的文件格式！]]></item>
+				<item id="errorurl"><![CDATA[对不起，您输入的图片链接格式不正确，仅支持jpg, jpeg, gif, png, bmp格式静态图片地址！]]></item>
+				<item id="get_error"><![CDATA[对不起，未获取到图片，请检查图片资源是否可访问或是否设置了防盗链！]]></item>
+				<item id="notid"><![CDATA[您的访问请求有误，请返回重试！]]></item>
+				<item id="upload_ok"><![CDATA[当前主题封面上传成功，DIY模块更新之后即可见新封面！]]></item>
+				<item id="upload_error"><![CDATA[上传失败，请重试或检查data/attachment/目录是否有可写权限！]]></item>
+				<item id="view_error"><![CDATA[对不起，未找到对应的关键词！]]></item>
+				<item id="view_title"><![CDATA[关键词&nbsp;<font color="red">{keyword}</font>&nbsp;对应图片列表(目录：<font color="blue">{dir}</font>)&nbsp;[<a href="{url}"><font color="green">返回列表</font></a>]]]></item>
+				<item id="view_m_1"><![CDATA[图片]]></item>
+				<item id="view_m_2"><![CDATA[图片路径]]></item>
+				<item id="view_nopic"><![CDATA[暂无内容]]></item>
+				<item id="update_ok"><![CDATA[关键词库更新成功！]]></item>
+				<item id="list_tips_title"><![CDATA[操作提示]]></item>
+				<item id="list_tips_info"><![CDATA[<ul id="tipslis">
+<li>1、功能介绍：关键词封面自动匹配是预先设置一系列关键词，每个关键词上传一定数量(不限)的图片，前台当没有封面的帖子标题如果包含某关键词，会自动从该关键词下提取图片设置封面！</li>
+<li>2、每个关键词对应唯一一个目录，请将您要匹配的关键词封面FTP上传至对应目录即可，如果对应目录自动创建失败，请上传时根据下面的提示手动建好目录并上传图片！</li>
+<li>3、上传的<font color="red">图片文件名尽量以数字、英文方式命名</font>，不要用汉字或其他字符，否则容易造成程序识别率低，后果自负！</li>
+<li>4、<font color="red">“标题关键词自动匹配图片封面”功能仅允许商业版使用，其他版本设置无效！</font></li></ul>]]></item>
+				<item id="list_title"><![CDATA[标题关键词自动匹配图片封面]]></item>
+				<item id="list_m_1"><![CDATA[关键词]]></item>
+				<item id="list_m_2"><![CDATA[图片目录]]></item>
+				<item id="list_m_3"><![CDATA[查看]]></item>
+				<item id="list_m_4"><![CDATA[删除]]></item>
+				<item id="list_op_add"><![CDATA[添加]]></item>
+				<item id="list_op_view"><![CDATA[查看]]></item>
+				<item id="list_op_delete"><![CDATA[删除]]></item>
+				<item id="list_op_submit"><![CDATA[提交]]></item>
+				<item id="list_op_tips"><![CDATA[选择操作：]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="appname"><![CDATA[帖子封面]]></item>
+				<item id="close"><![CDATA[关闭]]></item>
+				<item id="t_cover_show"><![CDATA[当前封面(DIY)]]></item>
+				<item id="t_cover_upload"><![CDATA[上传文件]]></item>
+				<item id="t_cover_get"><![CDATA[网络图片]]></item>
+				<item id="nocover"><![CDATA[无封面图片]]></item>
+				<item id="tips_1"><![CDATA[封面说明：]]></item>
+				<item id="tips_2"><![CDATA[<br>1、以上获取到的封面当前主题再DIY模块显示的封面图片！<br>2、如当前无封面，您可以使用本插件上传！]]></item>
+				<item id="tips_3"><![CDATA[←选择完文件后请点击“上传”按钮]]></item>
+				<item id="tips_4"><![CDATA[可用扩展名: <span class="xi1">jpg, jpeg, gif, png,bmp</span><br>本插件对图片不做任何放缩，请注意上传图片比例，建议以长高4:3为主！]]></item>
+				<item id="tips_5"><![CDATA[请输入图片地址]]></item>
+				<item id="tips_6"><![CDATA[提示信息: 请注意所填图片资源是否设置了防盗链！]]></item>
+				<item id="submit_upload"><![CDATA[上传]]></item>
+				<item id="submit_exit"><![CDATA[退出]]></item>
+				<item id="submit_get"><![CDATA[点击获取]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

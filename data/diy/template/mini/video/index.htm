@@ -1,0 +1,41 @@
+<!--{template common/header}-->
+<!--{if $_G['uid']}-->
+<style id="diy_style" type="text/css">#portal_block_13 {  background-color:#fffbd7 !important;background-image:none !important;}#portal_block_14 {  background-color:#fffbd7 !important;background-image:none !important;}</style>
+<div class="wp">
+    <div style='font-size: 20px;color:red;margin-top:25px;'>最新视频
+        <div style='font-size: 20px;color:red;float: right;'>
+            <a href="video.php?mod=list" >更多</a>
+        </div>
+    </div>
+    <hr></hr>
+    <!--[diy=diy1]--><div id="diy1" class="area"><div id="frameKt96IH" class="cl_frame_bm frame move-span cl frame-1"><div id="frameKt96IH_left" class="column frame-1-c"><div id="frameKt96IH_left_temp" class="move-span temp"></div><!--{block/13}--></div></div></div><!--[/diy]-->
+    <div style='font-size: 20px;color:red;margin-top:25px;'>攻略教学
+        <div style='font-size: 20px;color:red;float: right;'>
+            <a href="video.php?mod=list" >更多</a>
+        </div>
+    </div>
+    <hr></hr>
+    <!--[diy=diy2]--><div id="diy2" class="area"><div id="frameLX38Y8" class="cl_frame_bm frame move-span cl frame-1"><div id="frameLX38Y8_left" class="column frame-1-c"><div id="frameLX38Y8_left_temp" class="move-span temp"></div><!--{block/14}--></div></div></div><!--[/diy]-->
+    <div style='font-size: 20px;color:red;margin-top:25px;'>实况直播
+        <div style='font-size: 20px;color:red;float: right;'>
+        <a href="video.php?mod=zhibo" >更多</a>
+        </div>
+    </div>
+    <hr></hr>
+<div class="module cl ml">
+<ul>
+<!--{loop $tuijian $v}-->
+<li style="width: 220px;">
+    <a href="video.php?mod=target&url={$v['url']}"><img src="{$v['image']}" width="220" height="200" alt="{$v['title']}" /></a>
+    <p><a href="video.php?mod=target&url={$v['url']}" title="{$v['title']}"{target}>{$v['title']}</a></p>
+    <p>{$v['pingtai']}---主播：{$v['name']}</p>
+</li>
+<!--{/loop}-->
+</ul>
+</div>
+
+</div>
+<!--{elseif !$_G['uid']}-->
+<h1>请登录后查看！</h1>
+<!--{/if}-->
+<!--{template common/footer}-->
