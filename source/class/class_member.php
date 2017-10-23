@@ -838,7 +838,7 @@ class register_ctl {
 			}
 			$len=count($v);
 			//统计好友数量
-			C::t('common_member	_count')->update_friend_count($len,$uid);
+			C::t('common_member_count')->update_friend_count($len,$uid);
 			//写入社区好友关系
 			for ($i=0; $i <$len ; $i++) {
 				C::t('home_friend')->insert_friend($uid,$v[$i]);

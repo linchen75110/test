@@ -9,7 +9,7 @@ $_config['db']['1']['dbuser'] = 'shequ';
 $_config['db']['1']['dbpw'] = 'shequ';
 $_config['db']['1']['dbcharset'] = 'utf8';
 $_config['db']['1']['pconnect'] = '0';
-$_config['db']['1']['dbname'] = 'shequ1';
+$_config['db']['1']['dbname'] = 'shequ';
 $_config['db']['1']['tablepre'] = 'mn_';
 $_config['db']['slave'] = '';
 $_config['db']['common']['slave_except_table'] = '';
@@ -103,8 +103,6 @@ $_config['remote']['cron'] = '0';
 $_config['input']['compatible'] = 1;
 
 $_config['plugindeveloper']=1;
-
-
 // -------------------  THE END  -------------------- //
 
 ?>
