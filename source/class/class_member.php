@@ -49,7 +49,6 @@ class logging_ctl {
 		$invite = getinvite();
 
 		if(!submitcheck('loginsubmit', 1, $seccodestatus)) {
-
 			$auth = '';
 			$username = !empty($_G['cookie']['loginuser']) ? dhtmlspecialchars($_G['cookie']['loginuser']) : '';
 
@@ -93,6 +92,52 @@ class logging_ctl {
 			}
 			$result = userlogin($_GET['username'], $_GET['password'], $_GET['questionid'], $_GET['answer'], $this->setting['autoidselect'] ? 'auto' : $_GET['loginfield'], $_G['clientip']);
 			$uid = $result['ucresult']['uid'];
+
+			//---------------------------------------------------------------
+
+			session_start();
+			$ava=$_SESSION['ava'];
+			$friends_names=$_SESSION['friends_names'];
+			unset($_SESSION['ava']);
+			unset($_SESSION['friends_names']);
+
+			C::t('shequ_user')->update_ava($uid,$ava);		//修改头像
+			//查询登录过社区的好友列表
+			$friends_ids=C::t('shequ_user')->fetch_friends_ids($friends_names);
+			//更新好友数量
+			$count=count($friends_ids);
+			C::t('common_member_count')->update_friend_count($count,$uid);
+			//查询社区原好友列表
+			$friends_feedfriend=explode(',',C::t('common_member_field_home')->fetch_feedfriend($uid));
+			//对比好友列表是否有删除
+			//
+			$low_feedfriend=array_diff($friends_feedfriend,$friends_ids);
+			if(isset($low_feedfriend) && is_array($low_feedfriend)){
+				//发现有好友变化，删除已删除的好友关系
+				$len=count($low_feedfriend);
+				for ($i=0; $i <$len ; $i++) {
+					C::t('home_friend')->delete(array('uid'=>$uid,'guid'=>$low_feedfriend[$i]));
+				}
+			}
+			//对比好友列表是否有增加
+			$new_feedfriend=array_diff($friends_ids,$friends_feedfriend);
+			if(isset($new_feedfriend) && is_array($new_feedfriend)){
+			//发现有好友变化，添加新增的好友关系
+				$friends_all_user=C::t('shequ_user')->fetch_all_friends_name($new_feedfriend);
+				$friends_new_names=array();
+				foreach ($friends_all_user as $k => $v) {
+					$friends_new_names[]=$v;
+				}
+				$len=count($friends_new_names);
+				for ($i=0; $i <$len ; $i++) {
+					C::t('home_friend')->insert_friend($uid,$friends_new_names[$i]);
+				}
+			}
+
+
+
+
+
 
 			if(!empty($_GET['lssubmit']) && ($result['ucresult']['uid'] == -3 || $seccodecheck)) {
 				$_GET['username'] = $result['ucresult']['username'];
@@ -779,7 +824,9 @@ class register_ctl {
 			session_start();
 			$ava=$_SESSION['ava'];
 			$friends_names=$_SESSION['friends_names'];
-			C::t('shequ_user')->insert($uid,$username,$ava);
+			unset($_SESSION['ava']);
+			unset($_SESSION['friends_names']);
+			C::t('shequ_user')->insert_user($uid,$username,$ava);
 			C::t('common_member')->insert($uid, $username, $password, $email, $_G['clientip'], $groupinfo['groupid'], $init_arr);
 			$friends_ids=C::t('shequ_user')->fetch_friends_ids($friends_names);
 			C::t('common_member_field_home')->update_friend(implode(',',$friends_ids),$uid);
@@ -789,6 +836,7 @@ class register_ctl {
 				$v[]=$value;
 			}
 			$len=count($v);
+			C::t('common_member	_count')->update_friend_count($len,$uid);
 			for ($i=0; $i <$len ; $i++) {
 				C::t('home_friend')->insert_friend($uid,$v[$i]);
 			}

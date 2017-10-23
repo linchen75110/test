@@ -11,7 +11,7 @@ class table_shequ_user extends discuz_table
         $this->_pk    = 'id';
         parent::__construct();
     }
-    public function insert($uid, $username,$ava){
+    public function insert_user($uid, $username,$ava){
         $arr = array(
                                 'uid' => $uid,
                                 'username' => $username,
@@ -37,4 +37,16 @@ class table_shequ_user extends discuz_table
         }
         return $uids_all;
     }
+    public function update_ava($uid,$ava){
+        DB::update('shequ_user', array('ava'=>$ava),array('uid'=> $uid));
+    }
+     public function fetch_all_friends_name($uids){
+        $users = array();
+        if(!empty($uids)) {
+            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE uid IN (%n)', array($this->_table, (array)$uids), 'username');
+
+        }
+        return $users;
+    }
+
 }

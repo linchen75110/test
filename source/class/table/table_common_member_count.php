@@ -103,6 +103,9 @@ class table_common_member_count extends discuz_table_archive
 	public function count_by_friends($friends) {
 		return DB::result_first('SELECT COUNT(*) FROM %t WHERE friends>%d', array($this->_table, $friends));
 	}
+	public function update_friend_count($len,$uid){
+		DB::update('common_member_count', array('friends'=>"friends+$len"),array('uid'=> $uid));
+	}
 }
 
 ?>
