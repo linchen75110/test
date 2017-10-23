@@ -1,11 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('space_thread');
 0
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_header.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/common/userabout.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_userabout.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/common/header_common.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_diy.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
-|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_header_personalnv.htm', 1508752067, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_header.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/common/userabout.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_userabout.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/common/header_common.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_diy.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
+|| checktplrefresh('./template/mini/home/space_thread.htm', './template/default/home/space_header_personalnv.htm', 1508769362, 'diy', './data/template/2_diy_home_space_thread.tpl.php', './template/mini', 'home/space_thread')
 ;?>
 <?php $filter = array( 'common' => '已发表', 'save' => '草稿箱', 'close' => '已关闭', 'aduit' => '待审核', 'ignored' => '已忽略', 'recyclebin' => '回收站');
 $_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&amp;uid=$space[uid]&amp;do=thread&amp;view=me\">TA 的所有帖子</a>";?><?php if($diymode) { if($_G['setting']['homepagestyle']) { $_G[cookie][extstyle] = false;?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

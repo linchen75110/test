@@ -28,6 +28,7 @@
 		<!--{/if}-->
 
 		<div class="mn">
+		<!--{if $_G['groupid'] < 4}-->
 			<div class="bm bml pbn">
 				<!--{if $_G[forum][banner] && !$subforumonly}--><img src="$_G[forum][banner]" alt="$_G['forum'][name]" /><!--{/if}-->
 				<div class="bm_h cl">
@@ -85,6 +86,7 @@
 					</div>
 				<!--{/if}-->
 			</div>
+		<!--{/if}-->
 
 			<!--{hook/forumdisplay_top}-->
 
