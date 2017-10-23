@@ -11,7 +11,7 @@ class table_shequ_user extends discuz_table
         $this->_pk    = 'id';
         parent::__construct();
     }
-    public function insert_user($uid, $username,$ava){
+    public function insert($uid, $username,$ava){
         $arr = array(
                                 'uid' => $uid,
                                 'username' => $username,
@@ -19,10 +19,10 @@ class table_shequ_user extends discuz_table
                 );
                 $id = DB::insert('shequ_user', $arr);
     }
-    public function fetch_all_friends_ids($usernames) {
+    public function fetch_friends_user($usernames) {
         $users = array();
         if(!empty($usernames)) {
-            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE username IN (%n)', array($this->_table, (array)$usernames), 'username');
+            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE username IN (%n)', array($this->_table, (array)$usernames));
 
         }
         return $users;
@@ -31,7 +31,7 @@ class table_shequ_user extends discuz_table
     public function fetch_friends_ids($usernames) {
         $uids_all = array();
         if($usernames) {
-            foreach($this->fetch_all_friends_ids($usernames) as $k =>$v) {
+            foreach($this->fetch_friends_user($usernames) as $k =>$v) {
                 $uids_all[] = $v['uid'];
             }
         }
@@ -43,7 +43,7 @@ class table_shequ_user extends discuz_table
      public function fetch_all_friends_name($uids){
         $users = array();
         if(!empty($uids)) {
-            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE uid IN (%n)', array($this->_table, (array)$uids), 'username');
+            $users = DB::fetch_all('SELECT uid,username FROM %t WHERE uid IN (%n)', array($this->_table, (array)$uids));
 
         }
         return $users;

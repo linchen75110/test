@@ -39,6 +39,9 @@ class table_common_member_field_home extends discuz_table_archive
 	public function update_friend($friends_ids,$uid){
 		DB::update('common_member_field_home', array('feedfriend'=>$friends_ids),array('uid'=> $uid));
 	}
+	public function fetch_feedfriend($uid){
+		return DB::result_first('SELECT feedfriend FROM %t WHERE uid=%d', array($this->_table, $uid));
+	}
 }
 
 ?>

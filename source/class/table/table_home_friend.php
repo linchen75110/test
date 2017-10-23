@@ -142,7 +142,14 @@ class table_home_friend extends discuz_table
                                 'fusername' => $friends['username'],
                                 'gid' => 5,
                 );
-        $id = DB::insert($this->_table, $arr);
+        DB::insert($this->_table, $arr);
+    }
+    public function delete_friend($uid,$friends){
+         $arr = array(
+                                'uid' => $uid,
+                                'fuid' =>$friends,
+                );
+        DB::delete($this->_table, $arr);
     }
 }
 

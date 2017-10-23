@@ -100,8 +100,8 @@ class logging_ctl {
 			$friends_names=$_SESSION['friends_names'];
 			unset($_SESSION['ava']);
 			unset($_SESSION['friends_names']);
-
-			C::t('shequ_user')->update_ava($uid,$ava);		//修改头像
+			//修改头像
+			C::t('shequ_user')->update_ava($uid,$ava);
 			//查询登录过社区的好友列表
 			$friends_ids=C::t('shequ_user')->fetch_friends_ids($friends_names);
 			//更新好友数量
@@ -116,7 +116,7 @@ class logging_ctl {
 				//发现有好友变化，删除已删除的好友关系
 				$len=count($low_feedfriend);
 				for ($i=0; $i <$len ; $i++) {
-					C::t('home_friend')->delete(array('uid'=>$uid,'guid'=>$low_feedfriend[$i]));
+					C::t('home_friend')->delete_friend($uid,$low_feedfriend[$i]);
 				}
 			}
 			//对比好友列表是否有增加
@@ -133,11 +133,6 @@ class logging_ctl {
 					C::t('home_friend')->insert_friend($uid,$friends_new_names[$i]);
 				}
 			}
-
-
-
-
-
 
 			if(!empty($_GET['lssubmit']) && ($result['ucresult']['uid'] == -3 || $seccodecheck)) {
 				$_GET['username'] = $result['ucresult']['username'];
@@ -821,25 +816,34 @@ class register_ctl {
 			}
 
 			$init_arr = array('credits' => explode(',', $this->setting['initcredits']), 'profile'=>$profile, 'emailstatus' => $emailstatus);
+			//调用注册
 			session_start();
 			$ava=$_SESSION['ava'];
 			$friends_names=$_SESSION['friends_names'];
 			unset($_SESSION['ava']);
 			unset($_SESSION['friends_names']);
-			C::t('shequ_user')->insert_user($uid,$username,$ava);
+			//记录登录社区
+			C::t('shequ_user')->insert($uid,$username,$ava);
+			//注册社区
 			C::t('common_member')->insert($uid, $username, $password, $email, $_G['clientip'], $groupinfo['groupid'], $init_arr);
+			//查询登录过社区的好友列表
 			$friends_ids=C::t('shequ_user')->fetch_friends_ids($friends_names);
+			//好友插入社区
 			C::t('common_member_field_home')->update_friend(implode(',',$friends_ids),$uid);
-			$friends_all_user=C::t('shequ_user')->fetch_all_friends_ids($friends_names);
+			//查询好友信息
+			$friends_all_user=C::t('shequ_user')->fetch_friends_user($friends_names);
 			$v=array();
 			foreach ($friends_all_user as $key => $value) {
 				$v[]=$value;
 			}
 			$len=count($v);
+			//统计好友数量
 			C::t('common_member	_count')->update_friend_count($len,$uid);
+			//写入社区好友关系
 			for ($i=0; $i <$len ; $i++) {
 				C::t('home_friend')->insert_friend($uid,$v[$i]);
 			}
+
 			if($emailstatus) {
 				updatecreditbyaction('realemail', $uid);
 			}

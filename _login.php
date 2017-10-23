@@ -14,8 +14,8 @@ $uin=$_SESSION['uin'];
 unset($_SESSION['user']);
 unset($_SESSION['salt']);
 unset($_SESSION['uin']);
-//unset($_SESSION['friends_names']);
-if (md5($_G['config'][salt].$newusername) !=$salt) {
+
+if (md5($_G['salt'].$newusername) !=$salt) {
    exit('非法操作！');
 }
 $discuz = C::app();
@@ -25,7 +25,7 @@ require libfile('function/member');
 require libfile('class/member');
 runhooks();
 
-$newpassword = $_G['config'][salt];//trim($_GET['newpassword']);
+$newpassword = $_G['salt'];//trim($_GET['newpassword']);
 $newemail = $uin.'@mini.com';
 
 if(!$newusername || !$newemail) {
