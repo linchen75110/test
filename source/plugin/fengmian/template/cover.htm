@@ -1,0 +1,96 @@
+<!--{template common/header}-->
+<style>
+<!--
+#e_image_ctrl a,#e_image_ctrl a:focus{outline:none;}
+-->
+</style>
+<div class="mtm">
+<ul class="tb tb_s cl" id="e_image_ctrl" style="margin-top:0px;margin-bottom:0px;cursor:move;">
+<li class="y"><span class="flbc" onclick="hideWindow('{$_GET['handlekey']}')">{lang fengmian:close}</span></li>
+<li class="current" id="cover_show" style=""><a href="javascript:;" hidefocus="true" onclick="switchDoing('cover_show');">{lang fengmian:t_cover_show}</a></li>
+<li id="cover_upload" style="" class=""><a href="javascript:;" hidefocus="true" onclick="switchDoing('cover_upload');">{lang fengmian:t_cover_upload}</a></li>
+<li id="cover_get" class="" style=""><a href="javascript:;" hidefocus="true" onclick="switchDoing('cover_get');">{lang fengmian:t_cover_get}</a></li>
+</ul>
+
+<!--当前封面-->
+<div unselectable="on" id="e_cover_show" style="">
+	<div class="p_opt">
+		<div class="pbm bbda cl">
+			<!--{if $img_diy}-->
+			<img src="{$img_diy}" width="220px" height="150px">
+			<!--{else}-->
+			{lang fengmian:nocover}
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="notice upnf">
+		<span class="xi1">{lang fengmian:tips_1}</span>{lang fengmian:tips_2}
+	</div>
+</div>
+
+<!--上传文件-->
+<div unselectable="on" id="e_cover_upload" style="display: none;">
+	<div class="p_opt">
+		<div class="upbk pbm bbda">
+		<form name="form_1" method="post" autocomplete="off" action="plugin.php?id=fengmian:cover&tid={$_GET['tid']}" enctype="multipart/form-data">
+			<input type="hidden" name="formhash" value="{FORMHASH}">
+			<input type="hidden" name="cover_upload_submit" value="true">
+			<input type="file" name="newcover" size="45" class="filedata">
+			<p>
+				<button class="pn pnc vm" type="submit"><span>{lang fengmian:submit_upload}</span></button>
+				<span class="xg1">{lang fengmian:tips_3}</span>
+			</p>
+		</form>
+		</div>
+		<div class="notice upnf">{lang fengmian:tips_4}</div>
+	</div>
+	<div class="o">
+		<button onclick="hideWindow('{$_GET['handlekey']}')" class="pn pnc"><strong>{lang fengmian:submit_exit}</strong></button>
+	</div>
+</div>
+
+<!--网络图片-->
+<div unselectable="on" id="e_cover_get" style="display: none;">
+	<div class="p_opt popupfix">
+		<form name="form_1" method="post" autocomplete="off" action="plugin.php?id=fengmian:cover&tid={$_GET['tid']}" enctype="multipart/form-data">
+			<input type="hidden" name="formhash" value="{FORMHASH}">
+			<input type="hidden" name="cover_get_submit" value="true">
+			<table cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr class="xg1">
+					<th width="100%" class="pbn">{lang fengmian:tips_5}</th>
+				</tr>
+				<tr>
+					<td width="415px;"><input type="text" name="newcover_url" style="width:300px;" value="" class="px" autocomplete="off">&nbsp;<button class="pn pnc vm" type="submit"><span>{lang fengmian:submit_get}</span></button></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+			</table>
+			<div class="notice upnf">{lang fengmian:tips_6}</div>
+		</form>
+	</div>
+	<div class="o">
+		<button type="button" onclick="hideWindow('{$_GET['handlekey']}')" class="pn pnc" id="cover_get_submit"><strong>{lang fengmian:submit_exit}</strong></button>
+	</div>
+</div>
+
+
+
+
+
+</div>
+<script type="text/javascript">
+function switchDoing(btn) {
+	$('cover_show').className='';
+	$('cover_upload').className='';
+	$('cover_get').className='';
+	$('e_cover_show').style.display='none';
+	$('e_cover_upload').style.display='none';
+	$('e_cover_get').style.display='none';
+	$(btn).className='current';
+	$('e_'+btn).style.display='block';
+}
+</script>
+<!--{template common/footer}-->

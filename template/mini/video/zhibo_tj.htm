@@ -1,0 +1,146 @@
+<style type="text/css" media="screen">
+.live-list li {
+    float: left;
+    width: 25%;
+    margin-bottom: 30px;
+
+}
+.tb tr td{
+    text-align:center;
+}
+.pg, .pgb {
+    line-height: 26px;
+}
+
+.pg {
+    float: right;
+}
+.pg a.prev {
+    background-position: 50% 50%;
+}
+
+.pg a, .pg strong, .pgb a, .pg label {
+    float: left;
+    display: inline;
+    margin-left: 4px;
+    padding: 0 8px;
+    height: 26px;
+    border: 1px solid;
+    border-color: #C2D5E3;
+    background-color: #FFF;
+    background-repeat: no-repeat;
+    color: #333;
+    overflow: hidden;
+    text-decoration: none;
+}
+.pg strong {
+    background-color: #E5EDF2;
+}
+body{
+    width:70%;
+    margin:auto;
+}
+table tr td a{
+    float: left;
+    display: inline;
+    margin-left: 4px;
+    padding: 0 8px;
+    height: 26px;
+    border: 1px solid;
+    border-color: #C2D5E3;
+    background-color: #FFF;
+    background-repeat: no-repeat;
+    color: #333;
+    overflow: hidden;
+    text-decoration: none;
+
+}
+.ml li {
+    float: left;
+    padding: 0 5px 5px;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+ul li{
+    list-style: none;
+}
+.clear{ clear:both}
+
+
+</style>
+
+<div style='font-size: 20px;color:red;margin-top:25px;'>迷你新秀</div>
+<hr></hr>
+<div class="module cl ml">
+<ul>
+<!--{loop $tuijian $v}-->
+<li style="width: 220px;">
+    <a href="video.php?mod=target&url={$v['url']}"><img src="{$v['image']}" width="220" height="200" alt="{$v['title']}" /></a>
+    <p><a href="video.php?mod=target&url={$v['url']}" title="{$v['title']}">{$v['title']}</a></p>
+    <p>主播：{$v['name']}</p>
+</li>
+<!--{/loop}-->
+</ul>
+</div>
+<div class="clear">
+
+</div>
+<div style='font-size: 20px;color:red;margin-top:25px;'>直播列表</div>
+<div style='font-size: 20px;color:red;margin-top:10px;'>
+<a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian">全部</a>
+<a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai=hy">虎牙</a>
+<a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai=cs">触手</a>
+</div>
+<hr></hr>
+<div >
+    <table width='90%' border="1" class='tb' cellspacing="0" cellpadding="0" bordercolor="#ccc">
+    <tr>
+        <th>平台名称</th>
+        <th>主播名称</th>
+        <th>主播ID</th>
+        <th>人气</th>
+        <th width='15%' >修改推荐位</th>
+    </tr>
+    <!--{loop $result $k $v}-->
+        <!--{if !empty($v['nick'])}-->
+            <tr>
+                <td>虎牙tv</td>
+                <td>$v['nick']</td>
+                <td>$v['uid']</td>
+                <td>$v['attendeecount']</td>
+                <td>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=1">1</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=2">2</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=3">3</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=4">4</a>
+                </td>
+            </tr>
+
+        <!--{elseif !empty($v['anchorNickname'])}-->
+            <tr>
+                <td>触手tv</td>
+                <td>$v['anchorNickname']</td>
+                <td>$v['id']</td>
+                <td>$v['onlineCount']</td>
+                <td>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=1">1</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=2">2</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=3">3</a>
+                    <a href="admin.php?mod=zhibo&action=zhibo&operation=list&do=tuijian&pintai={$pintai}&uid={$k}&page={$pagenum}&id=4">4</a>
+                </td>
+            </tr>
+        <!--{/if}-->
+    <!--{/loop}-->
+    </table>
+    </ul>
+    <ol>
+       {$page}
+    </ol>
+</div>
+
+<div style='clear:both;height: 5%;'></div>
+<hr></hr>
+
+

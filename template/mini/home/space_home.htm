@@ -1,0 +1,223 @@
+<!--{if empty($diymode)}-->
+	<!--{template common/header}-->
+
+	<div id="pt" class="bm cl">
+		<div class="z">
+			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+			<!--{if $_G[setting][homestyle]}--><a href="home.php">$_G[setting][navs][4][navname]</a><!--{else}-->{lang feed}</a><!--{/if}-->
+		</div>
+	</div>
+
+	<!--{if $_G[setting][homestyle]}--><!--{ad/text/wp a_t}--><!--{/if}-->
+	<style id="diy_style" type="text/css"></style>
+	<div class="wp">
+		<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+	</div>
+
+
+
+<!--{else}-->
+	<!--{if $_G[setting][homepagestyle]}-->
+		<!--{subtemplate home/space_header}-->
+		<div id="ct" class="ct2 wp cl">
+			<div class="mn">
+				<div class="bm">
+					<div class="bm_h">
+						<h1 class="mt">{lang feed}</h1>
+					</div>
+				<div class="bm_c">
+	<!--{else}-->
+		<!--{template common/header}-->
+		<div id="pt" class="bm cl">
+			<div class="z">
+				<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+				<a href="home.php?mod=space&uid=$space[uid]">{$space[username]}</a> <em>&rsaquo;</em>
+				{lang memcp_profile}
+			</div>
+		</div>
+		<style id="diy_style" type="text/css"></style>
+		<div class="wp">
+			<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+		</div>
+		<!--{template home/space_menu}-->
+		<div id="ct" class="ct1 wp cl">
+			<div class="mn">
+				<!--[diy=diycontenttop]--><div id="diycontenttop" class="area"></div><!--[/diy]-->
+				<div class="bm bw0">
+					<div class="bm_c">
+	<!--{/if}-->
+<!--{/if}-->
+<!--{if $_G['uid']}-->
+
+
+			<div id="feed_div" class="e">
+			<!--{if $hotlist}-->
+				<h4 class="et"><a href="home.php?mod=space&do=home&view=all&order=hot" class="y xw0">{lang view_more_hot} <em>&rsaquo;</em></a>{lang recent_recommended_hot}</h4>
+				<ul class="el">
+				<!--{loop $hotlist $value}-->
+				<!--{eval $value = mkfeed($value);}-->
+				<!--{template home/space_feed_li}-->
+				<!--{/loop}-->
+				</ul>
+			<!--{/if}-->
+
+			<!--{if $list}-->
+				<!--{if $_GET[view] == 'app' && $_G['setting']['my_app_status']}-->
+					<!--{template home/space_home_feed_app}-->
+				<!--{else}-->
+					<!--{loop $list $day $values}-->
+						<!--{if $_GET['view']!='hot'}-->
+							<h4 class="et">
+								<!--{if $day=='yesterday'}-->{lang yesterday}<!--{elseif $day=='today'}-->{lang today}<!--{else}-->$day<!--{/if}-->
+							</h4>
+						<!--{/if}-->
+
+						<ul class="el">
+						<!--{loop $values $value}-->
+							<!--{template home/space_feed_li}-->
+						<!--{/loop}-->
+						</ul>
+					<!--{/loop}-->
+				<!--{/if}-->
+			<!--{elseif $feed_users}-->
+				<div class="xld xlda mtm">
+				<!--{loop $feed_users $day $users}-->
+				<h4 class="et">
+					<!--{if $day=='yesterday'}-->{lang yesterday}<!--{elseif $day=='today'}-->{lang today}<!--{else}-->$day<!--{/if}-->
+				</h4>
+				<!--{loop $users $user}-->
+				<!--{eval $daylist = $feed_list[$day][$user[uid]];}-->
+				<!--{eval $morelist = $more_list[$day][$user[uid]];}-->
+				<dl class="bbda cl">
+					<dd class="m avt">
+						<!--{if $user[uid]}-->
+						<a href="home.php?mod=space&uid=$user[uid]" target="_blank" c="1"><!--{avatar($user[uid],small)}--></a>
+						<!--{else}-->
+						<img src="{IMGDIR}/systempm.png" alt="" />
+						<!--{/if}-->
+					</dd>
+					<dd class="cl">
+						<ul class="el">
+						<!--{loop $daylist $value}-->
+							<!--{template home/space_feed_li}-->
+						<!--{/loop}-->
+						</ul>
+
+						<!--{if $morelist}-->
+						<p class="xg1 cl"><span onclick="showmore('$day', '$user[uid]', this);" class="unfold">{lang open}</span></p>
+						<div id="feed_more_div_{$day}_{$user[uid]}" style="display:none;">
+							<ul class="el">
+							<!--{loop $morelist $value}-->
+								<!--{template home/space_feed_li}-->
+							<!--{/loop}-->
+							</ul>
+						</div>
+						<!--{/if}-->
+					</dd>
+				</dl>
+				<!--{/loop}-->
+				<!--{/loop}-->
+				</div>
+			<!--{else}-->
+				<p class="emp"><!--{if $_GET[view] == 'app' && $_G['setting']['my_app_status']}-->{lang no_app_feed}<!--{else}-->{lang no_feed}<!--{/if}--></p>
+			<!--{/if}-->
+
+			<!--{if $filtercount}-->
+				<div class="i" id="feed_filter_notice_{$start}">
+					{lang depending_your}<a href="home.php?mod=spacecp&ac=privacy&op=filter" target="_blank" class="xi2 xw1">{lang filter_settings}</a>,{lang shield_feed_message} (<a href="javascript:;" onclick="filter_more($start);" id="a_feed_privacy_more" class="xi2">{lang click_view}</a>)
+				</div>
+				<div id="feed_filter_div_{$start}" style="display:none;">
+					<h4 class="et">{lang following_feed_shielding}</h4>
+					<ul class="el">
+					<!--{loop $filter_list $value}-->
+					<!--{template home/space_feed_li}-->
+					<!--{/loop}-->
+					<li><a href="javascript:;" onclick="filter_more($start);">&laquo; {lang pack_up}</a></li>
+					</ul>
+				</div>
+			<!--{/if}-->
+
+			</div>
+			<!--/id=feed_div-->
+			<!--{else}-->
+			<h1>没有好友信息~~~</h1>
+<!--{/if}-->
+
+<!--{if empty($diymode)}-->
+
+			<!--{if $multi}-->
+				<div class="pgs cl mtm">$multi</div>
+			<!--{/if}-->
+
+			<!--{hook/space_home_bottom}-->
+			<div id="ajax_wait"></div>
+		</div>
+
+		<!--[diy=diycontentbottom]--><div id="diycontentbottom" class="area"></div><!--[/diy]-->
+	</div>
+	<!--/content-->
+</div>
+
+<div class="wp mtn">
+	<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+<!--{else}-->
+
+			</div>
+		</div>
+	<!--{if $_G[setting][homepagestyle]}-->
+	</div>
+	<div class="sd">
+		<!--{subtemplate home/space_userabout}-->
+	<!--{/if}-->
+</div>
+<!--{/if}-->
+
+<!--{eval helper_manyou::checkupdate();}-->
+
+<script type="text/javascript">
+	function filter_more(id) {
+		if($('feed_filter_div_'+id).style.display == '') {
+			$('feed_filter_div_'+id).style.display = 'none';
+			$('feed_filter_notice_'+id).style.display = '';
+		} else {
+			$('feed_filter_div_'+id).style.display = '';
+			$('feed_filter_notice_'+id).style.display = 'none';
+		}
+	}
+
+	function close_feedbox() {
+		var x = new Ajax();
+		x.get('home.php?mod=spacecp&ac=common&op=closefeedbox', function(s){
+			$('feed_box').style.display = 'none';
+		});
+	}
+
+	function showmore(day, uid, e) {
+		var obj = 'feed_more_div_'+day+'_'+uid;
+		$(obj).style.display = $(obj).style.display == ''?'none':'';
+		if(e.className == 'unfold'){
+			e.innerHTML = '{lang pack_up}';
+			e.className = 'fold';
+		} else if(e.className == 'fold') {
+			e.innerHTML = '{lang open}';
+			e.className = 'unfold';
+		}
+	}
+
+	var elems = selector('li[class~=magicthunder]', $('feed_div'));
+	for(var i=0; i<elems.length; i++){
+		magicColor(elems[i]);
+	}
+
+	function showEditAvt(id) {
+		$(id).style.display = $(id).style.display == '' ? 'block' : '';
+	}
+	if($('edit_avt') && BROWSER.ie && BROWSER.ie == 6) {
+		_attachEvent($('edit_avt'), 'mouseover', function () { showEditAvt('edit_avt_tar'); });
+		_attachEvent($('edit_avt'), 'mouseout', function () { showEditAvt('edit_avt_tar'); });
+	}
+</script>
+
+<!--{template common/footer}-->

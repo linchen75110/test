@@ -1,0 +1,50 @@
+<!--{template common/header}-->
+<div>
+
+
+    <div style='font-size: 20px;color:red;margin-top:25px;'>迷你新秀</div>
+    <hr></hr>
+   <div class="module cl ml">
+<ul>
+<!--{loop $tuijian $v}-->
+<li style="width: 220px;">
+    <a href="video.php?mod=target&url={$v['url']}"><img src="{$v['image']}" width="220" height="200" alt="{$v['title']}" /></a>
+    <p><a href="video.php?mod=target&url={$v['url']}" title="{$v['title']}"{target}>{$v['title']}</a></p>
+    <p>{$v['pingtai']}---主播：{$v['name']}</p>
+</li>
+<!--{/loop}-->
+</ul>
+</div>
+
+
+    <div style='font-size: 20px;color:red;margin-top:25px;'>实况直播</div>
+    <div style='font-size: 20px;color:red;margin-top:10px;'>
+        <a href="video.php?mod=zhibo">全部</a>
+        <a href="video.php?mod=zhibo&action=hy">虎牙</a>
+        <a href="video.php?mod=zhibo&action=cs">触手</a>
+    </div>
+    <hr></hr>
+    <div class="module cl ml">
+<ul>
+<!--{loop $result $v}-->
+    <!--{if !empty($v['nick'])}-->
+        <li style="width: 220px;">
+            <a href="video.php?mod=target&url={$v['outweburl']}"><img src="{$v['avatarurl']}" width="220" height="200" alt="{$v['livetitle']}" /></a>
+            <p><a href="video.php?mod=target&url={$v['outweburl']}" title="{$v['livetitle']}">{$v['livetitle']}</a></p>
+            <p>虎牙TV--主播：{$v['nick']}</p>
+        </li>
+    <!--{elseif !empty($v['anchorNickname'])}-->
+        <li style="width: 220px;">
+            <a href="video.php?mod=target&url={$v['swf']}"><img src="{$v['cover']}" width="220" height="200" alt="{$v['name']}" /></a>
+            <p><a href="video.php?mod=target&url={$v['swf']}" title="{$v['name']}">{$v['name']}</a></p>
+            <p>触手TV--主播：{$v['anchorNickname']}</p>
+        </li>
+    <!--{/if}-->
+<!--{/loop}-->
+</ul>
+<ol>{$page}</ol>
+</div>
+</div>
+<div style='clear:both;'></div>
+
+<!--{template common/footer}-->

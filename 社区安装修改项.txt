@@ -1,0 +1,11 @@
+1. ./config/config_global.php   
+	数据库配置
+2. ./config/config_ucenter.php
+	数据库配置及域名配置
+3. ./login
+	$url=" "社区域名
+4. 导入sql
+登录后台
+mnadmin
+ya9YPqS9Wfy3EPLJ
+后台——》工具--》更新缓存
